@@ -6,6 +6,8 @@ pluginManagement {
     }
 }
 
-rootProject.name = 'Spring-Framework'
-include ':spring-batch'
-include ':concurrency'
+rootProject.name = 'spring-boot'
+include 'spring-batch'
+include 'concurrency'
+include 'application'
+include ':domain'

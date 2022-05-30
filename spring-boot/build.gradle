@@ -1,9 +1,14 @@
+import org.springframework.boot.gradle.plugin.SpringBootPlugin
+
 buildscript {
     ext {
+        gradleWrapperVersion = '7.4.1'
         gradleTestProject = subprojects.findAll {
             [
                     'spring-batch',
-                    'concurrency'
+                    'concurrency',
+                    'application',
+                    'domain'
             ].contains(it.name)
         }
     }
@@ -20,10 +25,12 @@ plugins {
     id 'java'
 }
 
-sourceCompatibility = '17'
 description = '''\
 Run as: Gradle clean
 '''
+
+sourceCompatibility = JavaVersion.VERSION_17
+targetCompatibility = JavaVersion.VERSION_17
 
 configurations {
     compileOnly {
@@ -38,6 +45,7 @@ allprojects {
 
 
     repositories {
+        mavenLocal()
         mavenCentral()
         maven { url 'https://repo.spring.io/milestone' }
         maven { url 'https://repo.spring.io/snapshot' }
@@ -46,12 +54,13 @@ allprojects {
 
     dependencyManagement {
         imports {
-            mavenBom org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES
+            mavenBom SpringBootPlugin.BOM_COORDINATES
         }
     }
     afterEvaluate {
         dependencies {
             implementation 'org.springframework.boot:spring-boot-starter-web'
+            implementation 'org.springframework.boot:spring-boot-devtools'
             compileOnly 'org.projectlombok:lombok'
             annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
             annotationProcessor 'org.projectlombok:lombok'
@@ -77,4 +86,11 @@ configure(project.gradleTestProject) {
 
 tasks.named('test') {
     useJUnitPlatform()
+}
+
+bootJar {
+    enabled(false)
+}
+jar {
+    enabled(true)
 }

@@ -1,13 +1,13 @@
-package com.spring.practice;
+package com.example.domain;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringBatchApplication {
+public class DomainApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringBatchApplication.class, args);
+        SpringApplication.run(DomainApplication.class, args);
     }
 
 }

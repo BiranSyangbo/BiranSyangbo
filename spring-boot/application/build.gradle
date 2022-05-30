@@ -1,0 +1,8 @@
+task wrapper(type: Wrapper) {
+    gradleVersion = "${gradleWrapperVersion}"
+}
+
+dependencies {
+    implementation project(":concurrency")
+}
+
