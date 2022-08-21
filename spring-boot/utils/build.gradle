@@ -1,5 +1,3 @@
 task wrapper(type: Wrapper){
     gradleVersion = "${gradleWrapperVersion}"
 }
-
-apply from: 'dependencies.gradle'

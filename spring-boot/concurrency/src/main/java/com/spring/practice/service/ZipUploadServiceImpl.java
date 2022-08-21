@@ -1,12 +1,13 @@
 package com.spring.practice.service;
 
+import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.InputStream;
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
@@ -14,15 +15,18 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
 @Service
+@RequiredArgsConstructor
 public class ZipUploadServiceImpl implements ZipUploadService {
 
     String fileUploadPath = "/home/deadhead-bs/Downloads/1 Chronicles.zip";
+
+    private BatchProcessingService batchProcessingService;
 
     @Override
     @SneakyThrows
     public boolean uploadZipFile(MultipartFile mPart) {
         ZipFile zipFile = new ZipFile(fileUploadPath);
-        zipFile.stream().filter(d -> !d.isDirectory())
+        List<String> collect = zipFile.stream().parallel().filter(d -> !d.isDirectory())
                 .map(f -> extractZip(zipFile, f))
                 .collect(Collectors.collectingAndThen(Collectors.toList(), completableFutures -> completableFutures.stream().map(CompletableFuture::join))
                 ).collect(Collectors.toList());
@@ -39,7 +43,7 @@ public class ZipUploadServiceImpl implements ZipUploadService {
         System.out.println(Thread.currentThread().getName());
         System.out.println("entry.getName() = " + entry.getName());
         InputStream inputStream = file.getInputStream(entry);
-
-        return "";
+        batchProcessingService.batchProcessing(inputStream);
+        return "Success";
     }
 }

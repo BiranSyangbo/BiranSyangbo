@@ -1,6 +1,3 @@
-plugins {
-    id 'maven-publish'
-}
 
 task wrapper(type: Wrapper) {
     gradleVersion = "${gradleWrapperVersion}"
@@ -8,10 +5,3 @@ task wrapper(type: Wrapper) {
 
 apply from: 'dependencies.gradle'
 
-publishing {
-    publications {
-        maven(MavenPublication) {
-            artifact tasks.named("jar")
-        }
-    }
-}
