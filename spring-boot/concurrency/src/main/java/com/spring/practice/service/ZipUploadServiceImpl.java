@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.InputStream;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
@@ -40,6 +41,8 @@ public class ZipUploadServiceImpl implements ZipUploadService {
 
     @SneakyThrows
     public String extractJSONFile(ZipFile file, ZipEntry entry) {
+        LinkedList list = new LinkedList();
+        list.add(0, "Biran");
         System.out.println(Thread.currentThread().getName());
         System.out.println("entry.getName() = " + entry.getName());
         InputStream inputStream = file.getInputStream(entry);

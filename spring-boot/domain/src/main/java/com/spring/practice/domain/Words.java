@@ -19,9 +19,12 @@ public class Words extends AbstractId {
     @Column(name = "offset")
     private Long offset;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "verse_id")
-    private Verse verse;
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "verse_id")
+//    private Verse verse;
+
+//    @OneToMany(mappedBy = "words")
+//    private List<Verse> verses;
 
     @OneToMany(mappedBy = "words")
     List<WordData> wordData;

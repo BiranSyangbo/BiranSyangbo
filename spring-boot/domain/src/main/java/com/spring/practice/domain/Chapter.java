@@ -17,6 +17,6 @@ public class Chapter extends AbstractId{
     @JoinColumn(name = "books_id")
     private Book book;
 
-    @OneToMany(mappedBy = "chapter")
-    private List<Verse> verses;
+//    @OneToMany(mappedBy = "chapter")
+//    private List<Verse> verses;
 }
