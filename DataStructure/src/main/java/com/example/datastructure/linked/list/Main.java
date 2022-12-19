@@ -1,0 +1,80 @@
+package com.example.datastructure.linked.list;
+
+public class Main {
+    public static void main(String[] args) {
+
+        int[] a = {1, 2, 3, 4, 5};
+
+    }
+
+
+    // Function for finding sum of larger numbers
+    static void findSum(String str1, String str2) {
+        // Before proceeding further, make sure length
+        // of str2 is larger.
+        if (str1.length() > str2.length()) {
+            String t = str1;
+            str1 = str2;
+            str2 = t;
+        }
+
+        // Take an empty String for storing result
+        String str = "";
+
+        // Calculate length of both String
+        int n1 = str1.length(), n2 = str2.length();
+        int diff = n2 - n1;
+
+        // Initially take carry zero
+        int carry = 0;
+
+        // Traverse from end of both Strings
+        for (int i = n1 - 1; i >= 0; i--) {
+            // Do school mathematics, compute sum of
+            // current digits and carry
+            int sum = ((str1.charAt(i) - '0') +
+                    (str2.charAt(i + diff) - '0') + carry);
+            System.out.println("sum = " + sum);
+            str += (char) (sum % 10 + '0');
+            carry = sum / 10;
+        }
+
+        System.out.println("str = " + str);
+        // Add remaining digits of str2[]
+        for (int i = n2 - n1 - 1; i >= 0; i--) {
+            int sum = ((str2.charAt(i) - '0') + carry);
+            str += (char) (sum % 10 + '0');
+            carry = sum / 10;
+        }
+
+        // Add remaining carry
+        if (carry > 0)
+            str += (char) (carry + '0');
+
+        // reverse resultant String
+        System.out.println(new StringBuilder(str).reverse());
+    }
+
+    private static void extracted(String a, String b) {
+        int carry = 0;
+        String hold = "";
+        for (int i = a.length() - 1; i >= 0; i--) {
+            int sum = ((a.charAt(i) - '0') +
+                    (b.charAt(i) - '0') + carry);
+            System.out.println("sum = " + sum);
+            hold += (char) (sum % 10 + '0');
+            carry = sum / 10;
+        }
+        System.out.println("hold = " + hold);
+
+        for (int i = (b.length() - a.length()) - 1; i >= 0; i--) {
+            int sum = (b.charAt(i) - '0') + carry;
+            hold += (char) (sum % 10 + '0');
+            carry = sum / 10;
+        }
+
+        if (carry > 0)
+            hold += (char) (carry + '0');
+        System.out.println("hold = " + new StringBuilder(hold).reverse());
+    }
+}
