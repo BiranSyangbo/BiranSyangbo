@@ -1,6 +1,6 @@
 package com.example.datastructure.leetcode.problem.array;
 
-public class CanSum {
+public class CanJump {
 
     public static void main(String[] args) {
 //        int[] arr = {3, 2, 1, 0, 4};
@@ -8,10 +8,6 @@ public class CanSum {
 //        int[] arr = {2, 5, 0, 0};
         int[] arr = {2, 3, 1, 1, 4};
         System.out.println(canJump(arr));
-        String s = "but";
-        String ss = "sadbutsad";
-        int i = ss.indexOf(s);
-        System.out.println(i);
     }
 
     public static boolean canJump(int[] nums) {
