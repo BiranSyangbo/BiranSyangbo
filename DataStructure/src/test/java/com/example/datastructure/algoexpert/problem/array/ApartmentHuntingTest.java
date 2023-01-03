@@ -1,11 +1,10 @@
-package com.example.datastructure.algoexpert.problem.graph.array;
+package com.example.datastructure.algoexpert.problem.array;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.val;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;
