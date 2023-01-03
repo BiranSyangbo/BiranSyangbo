@@ -1,6 +1,5 @@
-package com.example.datastructure.algoexpert.problem.graph.array;
+package com.example.datastructure.algoexpert.problem.array;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 

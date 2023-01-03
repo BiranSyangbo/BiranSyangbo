@@ -1,9 +1,8 @@
-package com.example.datastructure.algoexpert.problem.graph.array;
+package com.example.datastructure.algoexpert.problem.array;
 
 import org.junit.jupiter.api.Test;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 

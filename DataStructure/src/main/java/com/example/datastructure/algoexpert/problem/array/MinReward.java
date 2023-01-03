@@ -1,6 +1,4 @@
-package com.example.datastructure.algoexpert.problem.graph.array;
-
-import java.util.Arrays;
+package com.example.datastructure.algoexpert.problem.array;
 
 public class MinReward {
 

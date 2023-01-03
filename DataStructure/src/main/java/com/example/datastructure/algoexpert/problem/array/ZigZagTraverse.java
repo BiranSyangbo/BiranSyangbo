@@ -1,4 +1,4 @@
-package com.example.datastructure.algoexpert.problem.graph.array;
+package com.example.datastructure.algoexpert.problem.array;
 
 import java.util.ArrayList;
 import java.util.List;
