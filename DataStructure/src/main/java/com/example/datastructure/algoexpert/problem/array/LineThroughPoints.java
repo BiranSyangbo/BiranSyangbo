@@ -2,26 +2,50 @@ package com.example.datastructure.algoexpert.problem.array;
 
 import java.util.*;
 
+import static com.example.datastructure.math.GreatestCommonDivisor.gcd;
+
 public class LineThroughPoints {
 
     public static int lineThroughPoints(int[][] points) {
-        Map<Integer, Integer> overlap = new HashMap<>();
-        int maxoverlap = 0;
+        int maxoverlap = 1;
         for (int i = 0; i < points.length; i++) {
             int[] points1 = points[i];
+            Map<String , Integer> overlap = new HashMap<>();
             for (int j = i + 1; j < points.length; j++) {
                 int[] points2 = points[j];
-                int point = (points2[0] - points1[0]) == 0 ? 0 : (points2[1] - points1[1]) / (points2[0] - points1[0]);
-                int max;
-                if (overlap.containsKey(point)) {
-                    max = overlap.get(point) + 1;
-                } else
-                    max = 1;
-                overlap.put(point, max);
-                maxoverlap = Math.max(maxoverlap, max);
+                String slope = slop(points1, points2);
+                //(double) (points2[1] - points1[1]) / (points2[0] - points1[0]);
+                overlap.compute(slope, (k, v) -> overlap.getOrDefault(k, 1) + 1);
+                maxoverlap = Math.max(maxoverlap, overlap.get(slope));
             }
         }
         return maxoverlap;
+    }
+
+    private static String slop(int[] point1, int[] point2) {
+        int x1 = point1[0];
+        int y1 = point1[1];
+        int x2 = point2[0];
+        int y2 = point2[1];
+        String slop = "1:0";
+        if (x1 != x2) {
+            int xDiff = x2 - x1;
+            int yDiff = y2 - y1;
+            int gcd = gcd(xDiff, yDiff);
+            xDiff = xDiff / gcd;
+            yDiff = yDiff / gcd;
+            if (xDiff < 0) {
+                xDiff *= -1;
+                yDiff *= -1;
+            }
+            slop = xDiff + ":" + yDiff;
+        }
+        return slop;
+    }
+    public int abc(){
+        while (true) {
+            return 1;
+        }
     }
 
     public int[] answerQueries(int[] nums, int[] queries) {
