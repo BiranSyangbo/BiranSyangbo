@@ -6,8 +6,7 @@ import lombok.ToString;
 
 import java.awt.*;
 
-import static java.awt.Color.BLACK;
-import static java.awt.Color.RED;
+import static java.awt.Color.*;
 
 public class TEst<T extends Comparable<T>> {
 
