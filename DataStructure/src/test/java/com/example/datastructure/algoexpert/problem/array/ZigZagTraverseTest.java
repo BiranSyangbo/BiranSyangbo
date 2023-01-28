@@ -22,11 +22,4 @@ class ZigZagTraverseTest {
         assertArrayEquals(expected.toArray(), ZigZagTraverse.zigzagTraverse(test).toArray());
     }
 
-    public static void main(String[] args) {
-        Map<Integer, Integer> service = new HashMap();int i = 0;
-        int a = 0;
-        for (Integer integer : service.values()) {
-            a += integer;
-        }
-    }
 }
