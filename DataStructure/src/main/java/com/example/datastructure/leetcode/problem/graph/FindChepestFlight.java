@@ -5,42 +5,60 @@ import java.util.*;
 public class FindChepestFlight {
 
 
-    public static int findCheapestPrice(int n, int[][] flights, int src, int dst, int k) {
-        Map<Integer, List<Integer>> graph = new HashMap<>();
-        Map<String, Integer> priceGraph = new HashMap<>();
-        for (int[] flight : flights) {
-            graph.compute(flight[0],
-                    (key, v) -> {
-                        List<Integer> orDefault = graph.getOrDefault(key, new ArrayList<>());
-                        orDefault.add(flight[1]);
-                        return orDefault;
-                    });
-            String key = flight[0] + ":" + flight[1];
-            priceGraph.put(key, flight[2]);
-        }
-        boolean[] visited = new boolean[n];
-        int travel = searchCheapestPrice(graph, priceGraph, visited, src, dst, k, Integer.MAX_VALUE, 0, 0);
-        return travel == Integer.MAX_VALUE ? -1 : travel;
+    public static void main(String[] args) {
+        int j = 0;
     }
 
-    static int searchCheapestPrice(Map<Integer, List<Integer>> graph, Map<String, Integer> priceGraph, boolean[] visited, int src, int dest, int k, int price, int travel, int travelPrice) {
-        if (!visited[src]) {
-            if (travel > k)
-                return price;
-            if (src == dest) {
-                return Math.min(price, travelPrice);
-            }
-            visited[src] = true;
-            List<Integer> g = graph.get(src);
-            for (Integer node : g) {
-                String key = src + ":" + node;
-                travelPrice += priceGraph.getOrDefault(key, 0);
-                price = searchCheapestPrice(graph, priceGraph, visited, node, dest, k, price, ++travel, travelPrice);
-                travelPrice -= priceGraph.getOrDefault(key, 0);
-                --travel;
-//                visited[src] = false;
+    // There is an issue
+    public static int findCheapestPrice1(int n, int[][] flights, int src, int dst, int k) {
+        Map<Integer, List<int[]>> graph = new HashMap<>();
+        for (int[] flight : flights) {
+            graph.computeIfAbsent(flight[0], key -> new ArrayList<>()).add(new int[]{flight[1], flight[2]});
+        }
+        int[] dest = new int[n];
+        Arrays.fill(dest, Integer.MAX_VALUE);
+        Stack<int[]> stack = new Stack<>();
+        stack.push(new int[]{src, 0, k});
+        while (!stack.isEmpty()) {
+            int[] pop = stack.pop();
+            int s = pop[0];
+            int d = pop[1];
+            int c = pop[2];
+            if (s == dst)
+                continue;
+            if (c < 0)
+                continue;
+            List<int[]> g = graph.getOrDefault(s, new ArrayList<>());
+            for (int[] ints : g) {
+                int newSrc = ints[0];
+                int newDest = ints[1];
+                if (dest[newSrc] > d + newDest) {
+                    dest[newSrc] = d + newDest;
+                    stack.push(new int[]{newSrc, d + newDest, c - 1});
+                }
             }
         }
-        return price;
+        return dest[dst] == Integer.MAX_VALUE ? -1 : dest[dst];
     }
+
+
+    // bellmon ford examples
+    public static int findCheapestPrice(int n, int[][] flights, int src, int dst, int k) {
+        int[] dist = new int[n];
+        Arrays.fill(dist, Integer.MAX_VALUE);
+        dist[src] = 0;
+
+        for (int i = 0; i <= k; i++) {
+            int[] temp = Arrays.copyOf(dist, dist.length);
+            for (int[] flight : flights) {
+                int s = flight[0], d = flight[1], c = flight[2];
+                if (dist[s] == Integer.MAX_VALUE) continue;
+                temp[d] = Math.min(temp[d], dist[s] + c);
+            }
+            dist = temp;
+        }
+        return dist[dst] == Integer.MAX_VALUE ? -1 : dist[dst];
+    }
+
+
 }
