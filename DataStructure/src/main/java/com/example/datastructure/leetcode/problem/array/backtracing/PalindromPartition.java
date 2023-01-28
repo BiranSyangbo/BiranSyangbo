@@ -8,7 +8,7 @@ import java.util.List;
 public class PalindromPartition {
     public static void main(String[] args) {
         partition("aab");
-        Map<Integer, List<Integer>> unique = new HashMap();
+//        Map<Integer, List<Integer>> unique = new HashMap();
 
     }
 
