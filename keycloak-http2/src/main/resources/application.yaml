@@ -1,11 +1,11 @@
 server:
   http2:
-    enabled: true
-  port: 8443
+    enabled: false
+  port: 8080
   ssl:
-    key-store-type: PKCS12
-    key-store: classpath:localhost.p12
-    key-store-password: showman
-    key-alias: localhost
+    key-store: classpath:keystore.jks
+    key-store-password: bnpl-microfinance
+    key-alias: bnpl-microfinance
     protocol: TLS
+    enabled: false
 

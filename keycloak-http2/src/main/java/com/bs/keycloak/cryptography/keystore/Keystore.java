@@ -27,7 +27,6 @@ public class Keystore {
                 X509Certificate cert = loadCertificate(keyStorePassword, certificateAlias);
                 key = cert.getPublicKey();
             }
-
             Charset charset = Charset.forName(encoding);
             Cipher encryptor = Cipher.getInstance("RSA");
             encryptor.init(Cipher.ENCRYPT_MODE, key);
@@ -60,7 +59,6 @@ public class Keystore {
         try {
             KeyStore keystore = loadKeyStore(keyStorePassword);
             return (X509Certificate) keystore.getCertificate(certificateAlias);
-
         } catch (Exception e) {
             throw new GenericException("Failed to load certificate, alias: " + certificateAlias, e);
         }
@@ -70,7 +68,6 @@ public class Keystore {
         try {
             KeyStore keystore = loadKeyStore(keyStorePassword);
             return keystore.getKey(certificateAlias, keyStorePassword.toCharArray());
-
         } catch (Exception e) {
             throw new GenericException("Failed to load certificate private key, certificateAlias: " + certificateAlias, e);
         }
@@ -79,7 +76,7 @@ public class Keystore {
 
     @SneakyThrows
     public static KeyStore loadKeyStore(String keyStorePassword) {
-        URL resource = ResourceUtils.getURL("/home/deadhead/projects/personal/BiranSyangbo/keycloak-http2/src/main/resources/keystore.jks");
+        URL resource = ResourceUtils.getURL("classpath:keystore.jks");
         try (FileInputStream is = new FileInputStream(new File(resource.toURI()))) {
             KeyStore keystore = KeyStore.getInstance(KeyStore.getDefaultType());
             keystore.load(is, keyStorePassword.toCharArray());
@@ -87,13 +84,5 @@ public class Keystore {
         } catch (Exception e) {
             throw new GenericException("Failed to load keystore", e);
         }
-    }
-
-
-    public static void main(String[] args) {
-        String encrypt = encrypt(Base64.getEncoder().encodeToString("mifos".getBytes()), "UTF-8", "bnpl-microfinance", "bnpl-microfinance", false);
-        System.out.println("This is the encryption for mifos word" + encrypt);
-        String decrypt = decrypt(encrypt, "UTF-8", "bnpl-microfinance", "bnpl-microfinance", true);
-        System.out.println("This is the mifos word after decrypting it " + decrypt);
     }
 }
