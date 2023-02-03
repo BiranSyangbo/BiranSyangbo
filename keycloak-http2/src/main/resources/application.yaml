@@ -1,7 +1,7 @@
 server:
   http2:
     enabled: false
-  port: 8080
+  port: 9000
   ssl:
     key-store: classpath:keystore.jks
     key-store-password: bnpl-microfinance

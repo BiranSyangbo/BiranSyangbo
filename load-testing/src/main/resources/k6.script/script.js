@@ -8,7 +8,7 @@ export const options = {
             executor: 'ramping-vus',
             startVUs: 0,
             stages: [
-                { duration: '1s', target: 10 },
+                { duration: '10s', target: 20 },
                 { duration: '1s', target: 0 },
             ],
             gracefulRampDown: '0s',
@@ -18,7 +18,7 @@ export const options = {
 
 
 export default function () {
-    const res = http.get('http://localhost:8080/');
+    const res = http.get('http://localhost:9000/');
     check(res, {
         'status is 200': (r) => r.status === 200,
         'protocol is HTTP/1.1': (r) => r.proto === 'HTTP/1.1',

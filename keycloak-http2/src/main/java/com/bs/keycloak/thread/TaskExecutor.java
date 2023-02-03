@@ -13,10 +13,10 @@ public class TaskExecutor {
     @Bean
     public ThreadPoolTaskExecutor taskExecutorService() {
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
-        executor.setCorePoolSize(20);
-        executor.setMaxPoolSize(20);
+        executor.setCorePoolSize(5);
+        executor.setMaxPoolSize(5);
         executor.setThreadNamePrefix("MyThread-");
-        executor.setQueueCapacity(20);
+        executor.setQueueCapacity(5);
         executor.initialize();
         return executor;
     }
