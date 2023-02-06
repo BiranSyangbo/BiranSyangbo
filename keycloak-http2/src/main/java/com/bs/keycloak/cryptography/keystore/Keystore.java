@@ -76,7 +76,7 @@ public class Keystore {
 
     @SneakyThrows
     public static KeyStore loadKeyStore(String keyStorePassword) {
-        URL resource = ResourceUtils.getURL("classpath:keystore.jks");
+        URL resource = ResourceUtils.getURL("/home/deadhead/projects/personal/BiranSyangbo/keycloak-http2/src/main/resources/bnpl-keystore.jks");
         try (FileInputStream is = new FileInputStream(new File(resource.toURI()))) {
             KeyStore keystore = KeyStore.getInstance(KeyStore.getDefaultType());
             keystore.load(is, keyStorePassword.toCharArray());

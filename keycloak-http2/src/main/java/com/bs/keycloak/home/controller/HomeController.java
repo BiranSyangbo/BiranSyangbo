@@ -2,6 +2,7 @@ package com.bs.keycloak.home.controller;
 
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +13,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 @RestController
 @Slf4j
+@ConditionalOnProperty({"enable.controller.default", "enable.controller.custom"})
 public class HomeController {
 
     AtomicInteger atom = new AtomicInteger(0);

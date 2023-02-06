@@ -9,3 +9,6 @@ server:
     protocol: TLS
     enabled: false
 
+
+enable.controller.default: true
+enable.controller.custom: true
