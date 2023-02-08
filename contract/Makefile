@@ -1,0 +1,2 @@
+run:
+	cicd/generate.sh

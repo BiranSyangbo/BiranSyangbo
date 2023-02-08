@@ -1,0 +1,23 @@
+generatorName: 'spring'
+groupId: 'com.bs.contract'
+library: 'spring-boot'
+generateApiDocumentation: false
+generateSupportingFiles: false
+validateSpec: true
+additionalProperties:
+  java8: true
+  dateLibrary: 'java8-localdatetime'
+  serializableModel: true
+  serializationLibrary: 'jackson'
+  interfaceOnly: true
+  skipDefaultInterface: true
+  singleContentTypes: true
+  performBeanValidation: false
+  useBeanValidation: false
+  swaggerDocketConfig: false
+  useTags: true
+  bigDecimalAsString: true
+  ensureUniqueParams: true
+  strictSpec: true
+  delegatePattern: false
+  hateoas: false

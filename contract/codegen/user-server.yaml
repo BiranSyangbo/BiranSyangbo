@@ -1,0 +1,8 @@
+'!include': 'common/spring-boot.yaml'
+inputSpec: 'swagger/user-contract/src/main/resources/api/index.yaml'
+outputDir: 'dist/user/server'
+artificatId: 'user-server-contracts'
+artifactVersion: 'v1.0.0'
+apiPackage: 'com.bs.contract.openapi.user.api'
+modelPackage: 'com.bs.contract.openapi.user.models'
+invokerPackage: 'com.bs.contract.openapi.user.rest'

@@ -1,0 +1,16 @@
+get-all-user:
+  get:
+    tags:
+      - user-controller
+    summary: Get User
+    operationId: getAllUsers
+    responses:
+      '200': # status code
+        description: Get Users Details
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: string
+
