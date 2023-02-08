@@ -4,7 +4,9 @@
   "description": "Generate Api using openapi tools",
   "main": "index.js",
   "scripts": {
-    "generate" : "cicd/generate.sh"
+    "generate" : "cicd/generate.sh",
+    "clean": "rm -rf dist",
+    "build": "run-s clean generate"
   },
   "author": "Biran Syangbo",
   "license": "ISC",

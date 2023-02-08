@@ -1,0 +1,7 @@
+generatorName: 'typescript-angular'
+ngVersion: '15.1.2'
+providedInRoot: true
+supportsES6: true
+validateSpec: true
+additionalProperties:
+  strictSpec: true

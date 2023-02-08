@@ -1,0 +1,6 @@
+'!include': 'common/type-script.yaml'
+inputSpec: 'swagger/user-contract/src/main/resources/api/index.yaml'
+outputDir: 'dist/user/client'
+npmName: '@contract/user'
+npmVersion: 'v1.0.0'
+apiModulePrefix: 'UserContract'
