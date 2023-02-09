@@ -6,7 +6,9 @@
   "scripts": {
     "generate" : "cicd/generate.sh",
     "clean": "rm -rf dist",
-    "build": "run-s clean generate"
+    "build": "run-s clean generate",
+    "publish": "cicd/publish.sh",
+    "prepare": "cicd/prepare.sh"
   },
   "author": "Biran Syangbo",
   "license": "ISC",
