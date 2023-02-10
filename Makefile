@@ -1,0 +1,2 @@
+build:
+	mvnd clean install
