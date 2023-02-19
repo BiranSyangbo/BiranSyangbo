@@ -2,12 +2,15 @@ package com.spring.practice.domain;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 
 @Entity
 @Table(name = "b_verse")
-@Data
+@Getter
+@Setter
 public class Verse{
 
     @Column(name = "verse_no")
