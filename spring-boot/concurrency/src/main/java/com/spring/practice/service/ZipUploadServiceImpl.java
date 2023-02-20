@@ -46,7 +46,7 @@ public class ZipUploadServiceImpl implements ZipUploadService {
         System.out.println(Thread.currentThread().getName());
         System.out.println("entry.getName() = " + entry.getName());
         InputStream inputStream = file.getInputStream(entry);
-        batchProcessingService.batchProcessing(inputStream);
+        batchProcessingService.batchProcessing();
         return "Success";
     }
 }

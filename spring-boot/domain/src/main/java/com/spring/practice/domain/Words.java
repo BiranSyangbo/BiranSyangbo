@@ -2,12 +2,15 @@ package com.spring.practice.domain;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 
 @Entity
 @Table(name = "b_words")
-@Data
+@Getter
+@Setter
 public class Words extends AbstractId {
 
     @Column(name = "raw_word")
@@ -16,8 +19,8 @@ public class Words extends AbstractId {
     @Column(name = "clean_word")
     private String cleanWord;
 
-    @Column(name = "offset")
-    private Long offset;
+    @Column(name = "off_set")
+    private Long off_set;
 
 //    @ManyToOne(fetch = FetchType.LAZY)
 //    @JoinColumn(name = "verse_id")

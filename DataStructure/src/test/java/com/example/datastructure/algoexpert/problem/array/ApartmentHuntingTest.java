@@ -65,41 +65,39 @@ class ApartmentHuntingTest {
         assertEquals(2, ApartmentHunting.apartmentHunting(blocks, str));
     }
 
-    static String testCase2 = """
-            {
-              "blocks": [
-                {
-                  "gym": false,
-                  "office": true,
-                  "school": true,
-                  "store": false
-                },
-                {
-                  "gym": true,
-                  "office": false,
-                  "school": false,
-                  "store": false
-                },
-                {
-                  "gym": true,
-                  "office": false,
-                  "school": true,
-                  "store": false
-                },
-                {
-                  "gym": false,
-                  "office": false,
-                  "school": true,
-                  "store": false
-                },
-                {
-                  "gym": false,
-                  "office": false,
-                  "school": true,
-                  "store": true
-                }
-              ],
-              "reqs": ["gym", "office", "school", "store"]
-            }
-            """;
+    static String testCase2 = "{\n" +
+                              "  \"blocks\": [\n" +
+                              "    {\n" +
+                              "      \"gym\": false,\n" +
+                              "      \"office\": true,\n" +
+                              "      \"school\": true,\n" +
+                              "      \"store\": false\n" +
+                              "    },\n" +
+                              "    {\n" +
+                              "      \"gym\": true,\n" +
+                              "      \"office\": false,\n" +
+                              "      \"school\": false,\n" +
+                              "      \"store\": false\n" +
+                              "    },\n" +
+                              "    {\n" +
+                              "      \"gym\": true,\n" +
+                              "      \"office\": false,\n" +
+                              "      \"school\": true,\n" +
+                              "      \"store\": false\n" +
+                              "    },\n" +
+                              "    {\n" +
+                              "      \"gym\": false,\n" +
+                              "      \"office\": false,\n" +
+                              "      \"school\": true,\n" +
+                              "      \"store\": false\n" +
+                              "    },\n" +
+                              "    {\n" +
+                              "      \"gym\": false,\n" +
+                              "      \"office\": false,\n" +
+                              "      \"school\": true,\n" +
+                              "      \"store\": true\n" +
+                              "    }\n" +
+                              "  ],\n" +
+                              "  \"reqs\": [\"gym\", \"office\", \"school\", \"store\"]\n" +
+                              "}\n";
 }

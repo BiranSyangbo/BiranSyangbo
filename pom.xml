@@ -15,6 +15,7 @@
         <springboot.version>3.0.2</springboot.version>
         <swagger-parser-v3.version>2.1.11</swagger-parser-v3.version>
         <swagger-annotations.version>2.2.8</swagger-annotations.version>
+        <keycloak.version>20.0.3</keycloak.version>
     </properties>
 
     <modules>
@@ -22,6 +23,7 @@
         <module>keycloak-http2</module>
         <module>load-testing</module>
         <module>contract</module>
+        <module>client-app</module>
     </modules>
     <dependencyManagement>
         <dependencies>

@@ -2,10 +2,13 @@ package com.spring.practice.domain;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name = "b_word_data")
-@Data
+@Getter
+@Setter
 public class WordData extends AbstractId {
 
     @Column(name = "kind")
@@ -14,9 +17,9 @@ public class WordData extends AbstractId {
     @Column(name = "title")
     private String title;
 
-    @Lob
-    @Column(name = "description")
-    private String description;
+////    @Lob
+//    @Column(columnDefinition = "text", name = "description")
+//    private String description;
 
     @Column(name = "icon")
     private String icon;
@@ -25,7 +28,7 @@ public class WordData extends AbstractId {
     private String titleLanguage;
 
     @ManyToOne
-    @JoinColumn(name = "words_id")
+    @JoinColumn(name = "words_id", referencedColumnName = "id")
     private Words words;
 
     @OneToOne(fetch = FetchType.LAZY)

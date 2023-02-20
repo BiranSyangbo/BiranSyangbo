@@ -14,7 +14,6 @@
     <name>DataStructure</name>
     <description>Data Structure Practice</description>
     <properties>
-        <java.version>17</java.version>
     </properties>
     <dependencies>
         <dependency>
@@ -55,8 +54,8 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>17</source>
-                    <target>17</target>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
                 </configuration>
             </plugin>
         </plugins>

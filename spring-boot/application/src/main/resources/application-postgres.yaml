@@ -1,0 +1,9 @@
+spring:
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: jdbc:postgresql://localhost:5432/spring_batch?createDatabaseIfNotExist=true
+    username: admin
+    password: admin

@@ -12,3 +12,9 @@ server:
 
 enable.controller.default: true
 enable.controller.custom: true
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8080/realms/keycloak-test

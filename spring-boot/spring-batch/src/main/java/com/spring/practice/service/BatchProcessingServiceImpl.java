@@ -1,23 +1,27 @@
 package com.spring.practice.service;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import com.spring.practice.dto.VerseDto;
-import com.spring.practice.utils.GsonBuilder;
+import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
+import org.springframework.batch.core.BatchStatus;
+import org.springframework.batch.core.Job;
+import org.springframework.batch.core.JobExecution;
+import org.springframework.batch.core.JobParametersBuilder;
+import org.springframework.batch.core.launch.JobLauncher;
+import org.springframework.stereotype.Service;
 
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.lang.reflect.Type;
-import java.util.List;
+import java.util.UUID;
 
-public class BatchProcessingServiceImpl implements BatchProcessingService{
+@Service
+@RequiredArgsConstructor
+public class BatchProcessingServiceImpl implements BatchProcessingService {
+
+    private final JobLauncher jobLauncher;
+    private final Job job;
 
     @Override
-    public void batchProcessing(InputStream stream) {
-        Gson gson = GsonBuilder.gson();
-        Type typeToken = new TypeToken<List<VerseDto>>() {
-        }.getType();
-        List<VerseDto> verseDtos = gson.fromJson(new InputStreamReader(stream), typeToken);
-
+    @SneakyThrows
+    public BatchStatus batchProcessing() {
+        JobExecution jobStatus = jobLauncher.run(job, new JobParametersBuilder().addString("Id", UUID.randomUUID().toString()).toJobParameters());
+        return jobStatus.getStatus();
     }
 }
