@@ -3,6 +3,10 @@ package com.spring.practice.controller;
 import com.spring.practice.service.BatchProcessingService;
 import com.spring.practice.service.ZipUploadService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.batch.core.JobParametersInvalidException;
+import org.springframework.batch.core.repository.JobExecutionAlreadyRunningException;
+import org.springframework.batch.core.repository.JobInstanceAlreadyCompleteException;
+import org.springframework.batch.core.repository.JobRestartException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -21,7 +25,7 @@ public class ZipUploadController {
     }
 
     @GetMapping({"/", ""})
-    public String test() {
+    public String test() throws JobInstanceAlreadyCompleteException, JobExecutionAlreadyRunningException, JobParametersInvalidException, JobRestartException {
         return batchProcessingService.batchProcessing().toString();
     }
 

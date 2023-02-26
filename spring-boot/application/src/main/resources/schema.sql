@@ -1,4 +1,4 @@
-drop table if exists company_info;
+-- drop table if exists company_info;
 
 CREATE TABLE IF NOT EXISTS company_info (
     company_name varchar(500), /**/
@@ -11,5 +11,6 @@ CREATE TABLE IF NOT EXISTS company_info (
     locality varchar(500) ,
     region varchar(500) ,
     year integer,
-    url varchar (100)
+    url varchar (500),
+    primary key (company_name, website)
 );

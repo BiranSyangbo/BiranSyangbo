@@ -9,12 +9,16 @@ import org.springframework.batch.core.configuration.annotation.StepScope;
 import org.springframework.batch.core.job.builder.JobBuilder;
 import org.springframework.batch.core.launch.JobLauncher;
 import org.springframework.batch.core.launch.support.TaskExecutorJobLauncher;
+import org.springframework.batch.core.repository.JobExecutionAlreadyRunningException;
+import org.springframework.batch.core.repository.JobInstanceAlreadyCompleteException;
 import org.springframework.batch.core.repository.JobRepository;
+import org.springframework.batch.core.repository.JobRestartException;
 import org.springframework.batch.core.step.builder.StepBuilder;
 import org.springframework.batch.core.step.tasklet.Tasklet;
 import org.springframework.batch.repeat.RepeatStatus;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.ApplicationRunner;
+import org.springframework.boot.context.event.ApplicationStartedEvent;
+import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.task.SimpleAsyncTaskExecutor;
@@ -36,11 +40,18 @@ public class BatchConfig {
     private final JobRepository jobRepository;
     private final PlatformTransactionManager transactionManager;
 
+
     @Bean
-    ApplicationRunner runner1(JobLauncher jobLauncher) {
-        return args -> jobLauncher.run(job(null),
-                new JobParametersBuilder().addString("Uid", UUID.randomUUID().toString())
-                        .toJobParameters());
+    ApplicationListener<ApplicationStartedEvent> applicationListener(JobLauncher jobLauncher) {
+        return event -> {
+            try {
+                jobLauncher.run(job(null),
+                        new JobParametersBuilder().addString("Uid", UUID.randomUUID().toString())
+                                .toJobParameters());
+            } catch (JobExecutionAlreadyRunningException | JobRestartException | JobInstanceAlreadyCompleteException | JobParametersInvalidException e) {
+                e.printStackTrace();
+            }
+        };
     }
 
     @Bean
