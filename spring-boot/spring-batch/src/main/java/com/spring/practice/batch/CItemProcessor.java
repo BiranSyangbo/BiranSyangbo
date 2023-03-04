@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 import java.util.Random;
 
 @Component
-public class CItemProcessor implements ItemProcessor<CountryData, CountryData> {
+public class CItemProcessor implements ItemProcessor<CompanyData, CompanyData> {
 
     private final Random random;
 
@@ -15,7 +15,7 @@ public class CItemProcessor implements ItemProcessor<CountryData, CountryData> {
     }
 
     @Override
-    public CountryData process(CountryData item) {
+    public CompanyData process(CompanyData item) {
         if (item.getRange().contains("+")) {
             int min = Integer.parseInt(item.getRange().substring(0, item.getRange().length() - 1));
             return setEmployee(item, min, 50000);
@@ -28,7 +28,7 @@ public class CItemProcessor implements ItemProcessor<CountryData, CountryData> {
         return setEmployee(item, min, max);
     }
 
-    CountryData setEmployee(CountryData item, int min, int max) {
+    CompanyData setEmployee(CompanyData item, int min, int max) {
         int noOfEmployee = random(max, min);
         int noOfEstEmployee = random(max, min);
         if (item.getNoOfEmployee() == 0)

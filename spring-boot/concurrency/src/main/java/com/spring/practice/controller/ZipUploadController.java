@@ -16,7 +16,6 @@ import org.springframework.web.multipart.MultipartFile;
 public class ZipUploadController {
 
     private final ZipUploadService zipUploadService;
-    private final BatchProcessingService batchProcessingService;
 
     @PostMapping("/zip/upload")
     public String uploadZip(@RequestPart("file") MultipartFile file) {
@@ -24,9 +23,5 @@ public class ZipUploadController {
         return "Hello";
     }
 
-    @GetMapping({"/", ""})
-    public String test() throws JobInstanceAlreadyCompleteException, JobExecutionAlreadyRunningException, JobParametersInvalidException, JobRestartException {
-        return batchProcessingService.batchProcessing().toString();
-    }
 
 }

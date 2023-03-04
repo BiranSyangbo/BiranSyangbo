@@ -17,8 +17,8 @@ public class CItemWriter {
     private final DataSource dataSource;
 
     @Bean
-    public ItemWriter<CountryData> countryDataLoader() {
-        return new JdbcBatchItemWriterBuilder<CountryData>()
+    public ItemWriter<CompanyData> countryDataLoader() {
+        return new JdbcBatchItemWriterBuilder<CompanyData>()
                 .sql(sql)
                 .dataSource(dataSource)
                 .itemSqlParameterSourceProvider(item -> new MapSqlParameterSource()
@@ -53,7 +53,7 @@ public class CItemWriter {
     }
 
     private static final String sql = """
-            INSERT INTO company_info (
+            INSERT INTO company_details (
                 company_name, 
                 website, 
                 industry, 
@@ -77,7 +77,7 @@ public class CItemWriter {
                 :region,
                 :year,
                 :url
-            ) ON CONFLICT ON CONSTRAINT company_info_pkey 
+            ) ON CONFLICT ON CONSTRAINT company_details_pkey 
                DO UPDATE SET range = excluded.range,
                no_of_employee = excluded.no_of_employee,
                url = excluded.url,

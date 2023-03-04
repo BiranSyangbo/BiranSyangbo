@@ -2,6 +2,7 @@ package com.spring.practice.batch.config;
 
 import com.spring.practice.batch.listener.CustomJobExecutionListener;
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.*;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;

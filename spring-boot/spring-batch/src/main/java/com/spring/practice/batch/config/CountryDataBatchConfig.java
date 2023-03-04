@@ -3,11 +3,12 @@ package com.spring.practice.batch.config;
 import com.spring.practice.batch.CItemProcessor;
 import com.spring.practice.batch.CItemReader;
 import com.spring.practice.batch.CItemWriter;
-import com.spring.practice.batch.CountryData;
+import com.spring.practice.batch.CompanyData;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
+import org.springframework.batch.core.configuration.annotation.StepScope;
 import org.springframework.batch.core.job.builder.JobBuilder;
 import org.springframework.batch.core.repository.JobRepository;
 import org.springframework.batch.core.step.builder.StepBuilder;
@@ -37,7 +38,7 @@ public class CountryDataBatchConfig {
     @Bean
     public Step countryRunnerStep() {
         return new StepBuilder("CountryDataLoaderStep", jobRepository)
-                .<CountryData, CountryData>chunk(10000, transactionManager)
+                .<CompanyData, CompanyData>chunk(10000, transactionManager)
                 .reader(itemReader.countryDataReader())
                 .processor(itemProcessor)
                 .writer(itemWriter.countryDataLoader())

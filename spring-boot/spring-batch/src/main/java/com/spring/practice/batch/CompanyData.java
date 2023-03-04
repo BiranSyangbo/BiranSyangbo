@@ -4,11 +4,13 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serializable;
+
 
 @Getter
 @Setter
 @RequiredArgsConstructor
-public class CountryData {
+public class CompanyData implements Serializable {
     private String name;
     private String webSite;
     private String industry;
@@ -21,7 +23,7 @@ public class CountryData {
     private int year;
     private String url;
 
-    public CountryData(String name,
+    public CompanyData(String name,
                        String webSite,
                        String industry,
                        String range,

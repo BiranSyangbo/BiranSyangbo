@@ -3,12 +3,15 @@ spring:
     job:
       enabled: true
     jdbc:
-      initialize-schema: always
+      schema: classpath:/org/springframework/batch/core/schema-postgresql.sql
   sql:
     init:
       mode: always
   jpa:
     defer-datasource-initialization: true
+  rabbitmq:
+    username: user
+    password: password
+    host: localhost
 server:
   port: 8090
-
