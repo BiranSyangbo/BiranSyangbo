@@ -24,6 +24,7 @@
         <module>load-testing</module>
         <module>contract</module>
         <module>client-app</module>
+        <module>rsocket</module>
     </modules>
     <dependencyManagement>
         <dependencies>
