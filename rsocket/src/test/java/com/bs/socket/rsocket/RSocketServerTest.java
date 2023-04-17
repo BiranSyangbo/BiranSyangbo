@@ -9,7 +9,7 @@ public class RSocketServerTest {
     private final Disposable server;
 
     public RSocketServerTest() {
-        this.server = (Disposable) RSocketServer.create()
+        this.server = RSocketServer.create()
                 .payloadDecoder(PayloadDecoder.ZERO_COPY)
                 .bind(TcpServerTransport.create(7878))
                 .block();
