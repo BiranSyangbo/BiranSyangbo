@@ -32,7 +32,7 @@ public class AdaptorPattern {
         }
     }
 
-    private static sealed class RoundPeg {
+    private static sealed class RoundPeg permits SquirePegAdaptor {
         private final double radius;
 
         RoundPeg(double radius) {
@@ -48,7 +48,7 @@ public class AdaptorPattern {
     }
 
 
-    private static non-sealed class SquirePegAdaptor extends RoundPeg {
+    private static final class SquirePegAdaptor extends RoundPeg {
         private SquarePeg peg;
 
         private SquirePegAdaptor(SquarePeg peg) {
