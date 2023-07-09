@@ -1,13 +1,12 @@
-package com.bs.socket.rsocket;
+package com.bs.socket.rsocket
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication
+import org.springframework.boot.SpringApplication
 
 @SpringBootApplication
-public class RsocketApplication {
-
-    public static void main(String[] args) {
-        SpringApplication.run(RsocketApplication.class, args);
+object RsocketApplication {
+//    @kotlin.jvm.JvmStatic
+    fun main(args: Array<String>) {
+        SpringApplication.run(RsocketApplication::class.java, *args)
     }
-
 }

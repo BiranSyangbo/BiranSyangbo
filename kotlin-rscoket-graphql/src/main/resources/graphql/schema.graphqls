@@ -1,0 +1,26 @@
+type Query {
+    bookById(id: ID, first: Int, after:Int): Book
+    books(first: Int, after: Int) : [Book]
+}
+
+type Book {
+    id: ID
+    name: String
+    pageCount: Int
+    author: Author
+}
+
+type Author {
+    id: ID
+    firstName: String
+    lastName: String
+}
+
+type Product {
+    id : ID
+    name : String
+    description : String
+    cost : Float
+    tax : Float
+    launchDate(dateFormat : String = "dd, MMM, yyyy") : String
+}

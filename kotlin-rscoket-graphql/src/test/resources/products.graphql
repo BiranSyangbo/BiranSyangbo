@@ -1,0 +1,12 @@
+type Query {
+    hello :String
+}
+
+type Product {
+    id: ID!
+    name: String
+    description: String
+    cost: Float
+    tax: Float
+    launchDate(dateFormat: String = "dd-MM-YYY"): String
+}
