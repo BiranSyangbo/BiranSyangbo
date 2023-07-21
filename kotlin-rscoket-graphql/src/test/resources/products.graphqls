@@ -1,0 +1,28 @@
+type Query {
+    products: [Product]
+    tryParams(color: Color): Product
+    saveProduct(product: ProductDto): Product
+}
+
+type Product {
+    id: ID!
+    name: String
+    description: String
+    cost: Float
+    tax: Float
+    launchDate(dateFormat: String = "dd-MM-YYY"): String
+}
+
+enum Color{
+    RED, BLUE, GREEN, BLACK
+}
+
+
+input ProductDto {
+    name: String
+    description: String
+    cost: Float
+    tax: Float
+}
+
+
