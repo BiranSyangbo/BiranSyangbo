@@ -4,6 +4,10 @@ type Query {
     saveProduct(product: ProductDto): Product
 }
 
+type Mutation {
+    saveProduct(product: ProductDto) : Product
+}
+
 type Product {
     id: ID!
     name: String

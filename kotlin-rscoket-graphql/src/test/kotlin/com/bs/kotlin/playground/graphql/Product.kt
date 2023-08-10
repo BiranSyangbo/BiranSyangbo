@@ -63,7 +63,7 @@ fun main() {
 
 }
 
-class Product(val id: Int, val desc: String?, val name: String?, val cost: Float?, val tax: Float?, private val launchDate: LocalDateTime) {
+class Product(val id: Int, val desc: String?, var name: String?, val cost: Float?, val tax: Float?, private val launchDate: LocalDateTime) {
 
     fun getLaunchDate(environment: DataFetchingEnvironment): String {
         val format = environment.getArgument<String>("dateFormat")

@@ -2,13 +2,41 @@ package com.bs.kotlin.playground.graphql
 
 import graphql.ExecutionResult
 import graphql.GraphQL
+import graphql.GraphQLContext
 import graphql.Scalars
 import graphql.schema.*
 import graphql.schema.GraphQLCodeRegistry.newCodeRegistry
 import java.time.LocalDateTime
+import java.util.*
 import java.util.concurrent.CompletableFuture
 
 fun main() {
+    readMutationFileFromFile()
+
+}
+
+fun readMutationFileFromFile() {
+
+    fun fetcher(): MutableMap<String, DataFetcher<Any>> {
+        val fetcher = DataFetcher<Any> { environment: DataFetchingEnvironment? ->
+            val context: GraphQLContext? = environment?.graphQlContext
+            val match = environment?.arguments?.get("product") as Map<String, *>
+            println(match)
+            val product = Product.findAll()[0]
+            product.name = match["name"] as String?
+            product
+        }
+        val map = HashMap<String, DataFetcher<Any>>()
+        map.put("saveProduct", fetcher);
+        return map
+    }
+
+    val graphQl = GraphQlBuilder(fetcher()).getGraphQl("products.graphqls")
+    val executionResult: ExecutionResult = graphQl.execute(mutationQuery)
+    println(executionResult.toSpecification())
+}
+
+private fun customFieldInitialization() {
     val productDto = GraphQLInputObjectType.newInputObject()
             .name("ProductDto")
             .field(GraphQLInputObjectField.newInputObjectField()
@@ -60,7 +88,6 @@ fun main() {
             .build();
 
 
-
     val graphQLSchema = GraphQLSchema.newSchema()
             .query(product)
             .mutation(graphQlMutation)
@@ -71,19 +98,19 @@ fun main() {
             .build()
 
 
-    val mutationQuery = """
+    val promise: CompletableFuture<ExecutionResult> = graphQL.executeAsync { t -> t.query(mutationQuery) }
+
+    promise.thenAccept { t -> println(t.getData<Any>()) }
+
+    promise.join()
+}
+
+val mutationQuery: String = """
         mutation {
-          saveProduct(product: {name:"Syangbo Biran"}) {
+          saveProduct(product: {name:"Lama Biran"}) {
             id
             name
             cost
           }
         }
     """.trimIndent();
-    val promise: CompletableFuture<ExecutionResult> = graphQL.executeAsync { t -> t.query(mutationQuery) }
-
-    promise.thenAccept { t -> println(t.getData<Any>()) }
-
-    promise.join()
-
-}

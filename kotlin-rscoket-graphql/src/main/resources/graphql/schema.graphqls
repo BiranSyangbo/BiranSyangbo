@@ -1,7 +1,19 @@
 type Query {
-    bookById(id: ID, first: Int, after:Int): Book
-    books(first: Int, after: Int) : [Book]
+    findById(id: ID): Book
+    findAll(first: Int, after: Int) : [Book]
+    test : [Test]
+    testById(id: ID): Test
 }
+
+type Mutation {
+    saveBook(book: BookInput): Book
+}
+
+type Test {
+    id: ID
+    name: String
+}
+
 
 type Book {
     id: ID
@@ -9,6 +21,14 @@ type Book {
     pageCount: Int
     author: Author
 }
+
+input BookInput{
+    id: ID
+    name: String
+    pageCount: Int
+    authorId : Int
+}
+
 
 type Author {
     id: ID
