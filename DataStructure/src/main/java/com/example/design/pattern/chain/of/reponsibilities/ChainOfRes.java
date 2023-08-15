@@ -12,10 +12,11 @@ import java.util.List;
 public class ChainOfRes {
 
     public static void main(String[] args) {
-        List<EnrichmentStep> arr = new ArrayList<>();
-        arr.add(new ValidateMessageStep());
-        arr.add(new MessageSecurityEnhanceStep());
-        var message = new EnrichmentStepFacade(arr).enrich(new Message("Hello this is test"));
+        List<EnrichmentStep> steps = new ArrayList<>();
+        steps.add(new ValidateMessageStep());
+        steps.add(new MessageSecurityEnhanceStep());
+        var message = new EnrichmentStepFacade(steps)
+                .enrich(new Message("Hello this is test"));
         System.out.println(message.content());
     }
 }

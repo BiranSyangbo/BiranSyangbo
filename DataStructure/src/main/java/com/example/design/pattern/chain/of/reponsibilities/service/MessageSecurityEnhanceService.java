@@ -2,21 +2,18 @@ package com.example.design.pattern.chain.of.reponsibilities.service;
 
 import org.apache.commons.lang3.StringEscapeUtils;
 
-import java.util.Optional;
-
-import static java.util.Optional.*;
+import static java.util.Optional.of;
 
 public class MessageSecurityEnhanceService {
 
-    private final Optional<String> content;
-
+    private final String content;
 
     public MessageSecurityEnhanceService(String content) {
-        this.content = of(content);
+        this.content = content;
     }
 
     public String filter() {
-        return content
+        return of(content)
                 .map(StringEscapeUtils::escapeHtml4)
                 .map(StringEscapeUtils::escapeJson)
                 .map(StringEscapeUtils::escapeEcmaScript)
