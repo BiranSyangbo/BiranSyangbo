@@ -8,6 +8,7 @@ import com.example.design.pattern.command.executor.impl.RejectWorkflow;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
+import java.util.Locale;
 
 public class MainCommand {
     public static void main(String[] args) throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
@@ -25,5 +26,6 @@ public class MainCommand {
         var reject = command.dispatch(CommandType.REJECT, new RejectCommand("Reject the code", false));
         System.out.println(approve);
         System.out.println(reject);
+        System.out.println("EDITHHBTFDEV_JRHB_CBS".toLowerCase(Locale.ROOT));
     }
 }
