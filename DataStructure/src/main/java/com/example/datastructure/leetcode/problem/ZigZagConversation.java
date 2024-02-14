@@ -36,7 +36,7 @@ public class ZigZagConversation {
     public static String converterAsElevator(String s, int numRows) {
         if(numRows == 1)
             return s;
-        String ans = "";
+        StringBuilder ans = new StringBuilder();
         StringBuilder[] builders = new StringBuilder[numRows];
         for(int i=0 ; i < numRows; i++) {
             builders[i] = new StringBuilder();
@@ -51,9 +51,9 @@ public class ZigZagConversation {
         }
 
         for(StringBuilder b : builders ) {
-            ans += b.toString();
+            ans.append(b.toString());
         }
 
-        return ans;
+        return ans.toString();
     }
 }

@@ -1,5 +1,6 @@
 package com.example;
 
+import com.example.drools.DataStructureApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
